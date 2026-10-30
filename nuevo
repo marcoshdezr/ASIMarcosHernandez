@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CAOS TOTAL 💥</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: linear-gradient(45deg,
+        #ff0055, #7b00ff, #00ccff, #00ff88);
+    background-size: 400% 400%;
+    animation: fondo 5s infinite alternate;
+}
+
+@keyframes fondo {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 100% 50%; }
+}
+
+.container {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: 35px 15px;
+}
+
+h1 {
+    font-size: clamp(38px, 9vw, 85px);
+    text-shadow: 4px 4px #ff0055, -4px -4px #00ffff;
+    animation: bounce .5s infinite alternate;
+}
+
+@keyframes bounce {
+    to { transform: scale(1.08) rotate(2deg); }
+}
+
+.subtitle {
+    font-size: 23px;
+    font-weight: bold;
+}
+
+button {
+    margin: 10px;
+    padding: 18px 25px;
+    border: 3px solid white;
+    border-radius: 18px;
+    font-size: 20px;
+    font-weight: bold;
+    background: #ffeb00;
+    color: #111;
+    cursor: pointer;
+    box-shadow: 0 0 20px white;
+    transition: .2s;
+}
+
+button:hover {
+    transform: scale(1.15) rotate(-3deg);
+    background: #ff55dd;
+    color: white;
+}
+
+#counter {
+    font-size: 45px;
+    font-weight: bold;
+    margin: 20px;
+}
+
+.floating {
+    position: absolute;
+    font-size: 35px;
+    pointer-events: none;
+    animation: fly 4s linear forwards;
+}
+
+@keyframes fly {
+    from { transform: translateY(110vh) rotate(0deg); }
+    to { transform: translateY(-120px) rotate(720deg); }
+}
+
+#message {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 25px;
+    min-height: 40px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>💥 CAOS TOTAL 💥</h1>
+    <p class="subtitle">BIENVENIDO AL REINO DEL DESCONTROL</p>
+
+    <div id="counter">0</div>
+    <p>CLICS DE LOCURA</p>
+
+    <button onclick="clickLocura()">🔥 ¡PULSA AQUÍ!</button>
+    <button onclick="mensaje()">🎲 SORPRESA</button>
+    <button onclick="lluvia()">🌈 LLUVIA DE EMOJIS</button>
+
+    <div id="message">¿ESTÁS PREPARADO? 😈</div>
+</div>
+
+<script>
+let clicks = 0;
+
+const frases = [
+    "¡¡¡BOOOOOOM!!! 💥",
+    "¡MODO TURBO ACTIVADO! 🚀",
+    "¿PERO QUÉ ESTÁ PASANDO? 🤯",
+    "¡ERES UNA LEYENDA! 👑",
+    "¡CAOS ABSOLUTO! 🌪️",
+    "¡PÍXELES POR TODAS PARTES! ✨",
+    "¡EL UNIVERSO NO ESTABA PREPARADO! 🌌"
+];
+
+const emojis = ["🚀","🔥","💎","👾","🌈","🍕","🦄","💥","⭐","🐸"];
+
+function clickLocura() {
+    clicks++;
+    document.getElementById("counter").textContent = clicks;
+    document.getElementById("message").textContent =
+        frases[Math.floor(Math.random() * frases.length)];
+
+    lluvia();
+}
+
+function mensaje() {
+    document.getElementById("message").textContent =
+        frases[Math.floor(Math.random() * frases.length)];
+}
+
+function lluvia() {
+    for (let i = 0; i < 18; i++) {
+        let e = document.createElement("div");
+        e.className = "floating";
+        e.textContent = emojis[Math.floor(Math.random()*emojis.length)];
+        e.style.left = Math.random() * 100 + "vw";
+        e.style.animationDuration = (2 + Math.random()*3) + "s";
+        document.body.appendChild(e);
+
+        setTimeout(() => e.remove(), 5000);
+    }
+}
+
+setInterval(lluvia, 1800);
+</script>
+
+</body>
+</html>
